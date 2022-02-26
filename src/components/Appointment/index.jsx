@@ -19,9 +19,9 @@ export default function Appointment(props) {
 	return (
 		<article className='appointment'>
 			<Header time={props.time} />
-      {/* {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer}/>}
-      {mode === EMPTY &&  <Empty />} */}
-			{props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer}/> : <Empty />}
+      {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer}/>}
+      {mode === EMPTY &&  <Empty onAdd={() => console.log("Clicked onAdd")} />}
+			{/* {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer}/> : <Empty />} */}
 		</article>
 	);
 }
