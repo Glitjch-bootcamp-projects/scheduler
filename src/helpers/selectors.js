@@ -18,6 +18,10 @@ export function getInterview(state, interview) {
 	if (!interview) {
 		return null;
 	}
+  // when re-rendering the same interviews, return the same (this prevents white-screen when clicking on a day twice consecutively)
+  if (interview.interviewer.id) {
+    return interview;
+  }
   // replace the interview's id tag with the full description of the interviewer, found in state. 
 	interview.interviewer = state.interviewers[interview.interviewer];
 	return interview;
