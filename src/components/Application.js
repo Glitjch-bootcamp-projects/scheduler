@@ -17,19 +17,36 @@ export default function Application(props) {
 		interviewers: {},
 	});
 
+
+  const bookInterview = (id, interview) => {
+    console.log("TJ function bookInterview Application to Appointment", id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState( {
+      ...state,
+      appointments
+    })
+  };
+
 	// generate appointments, sorted by day
 	const dailyAppointments = getAppointmentsForDay(state, state.day);
 	const appt = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day)
-    // console.log("TJappointment Application", appointment);
-    // console.log("TJinterviewers Application", interviewers);
+    // console.log("TJinterviewers Application", appointment);
 		return <Appointment 
-    key={appointment.id} 
+    key={appointment.id}
     id={appointment.id}
     time={appointment.time}
     interview={interview}
     interviewers={interviewers}
+    bookInterview={bookInterview}
     />;
 	});
 

@@ -44,3 +44,10 @@ export function getInterview(state, interview) {
 	interview.interviewer = state.interviewers[interview.interviewer];
 	return interview;
 };
+
+
+export function delayStatus(hook, newMode) {
+  setTimeout(()=> hook(newMode)
+  , 2000);
+  console.log("TJ delay 1");
+};
