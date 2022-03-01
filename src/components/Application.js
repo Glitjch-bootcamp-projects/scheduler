@@ -7,7 +7,12 @@ import Appointment from "./Appointment";
 
 import axios from "axios";
 
-import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors";
+import {
+	getAppointmentsForDay,
+	getInterviewersForDay,
+	getInterview,
+} from "helpers/selectors";
+
 
 export default function Application(props) {
 	const [state, setState] = useState({
@@ -18,38 +23,66 @@ export default function Application(props) {
 	});
 
 
-  const bookInterview = (id, interview) => {
-    console.log("TJ function bookInterview Application to Appointment", id, interview);
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    setState( {
-      ...state,
-      appointments
-    })
-  };
+	const bookInterview = (id, interview) => {
+		console.log(
+			"TJ function bookInterview Application to Appointment",
+			id,
+			interview
+		);
+		const appointment = {
+			...state.appointments[id],
+			interview: { ...interview },
+		};
+		const appointments = {
+			...state.appointments,
+			[id]: appointment,
+		};
+		axios
+			.put(`/api/appointments/${id}`, {
+				interview,
+			})
+			.then(
+				setState({
+					...state,
+					appointments,
+				})
+			);
+	};
+
+
+	const cancelInterview = (id) => {
+		const appointment = {
+			...state.appointments[id],
+			interview: null,
+		};
+		return axios
+      .delete(`/api/appointments/${id}`)
+      .then(() => {
+        setState({
+          ...state,
+          appointment
+        })
+		});
+	};
 
 	// generate appointments, sorted by day
 	const dailyAppointments = getAppointmentsForDay(state, state.day);
 	const appt = dailyAppointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
-    const interviewers = getInterviewersForDay(state, state.day)
-    // console.log("TJinterviewers Application", appointment);
-		return <Appointment 
-    key={appointment.id}
-    id={appointment.id}
-    time={appointment.time}
-    interview={interview}
-    interviewers={interviewers}
-    bookInterview={bookInterview}
-    />;
+		const interview = getInterview(state, appointment.interview);
+		const interviewers = getInterviewersForDay(state, state.day);
+		// console.log("TJinterviewers Application", appointment);
+		return (
+			<Appointment
+				key={appointment.id}
+				id={appointment.id}
+				time={appointment.time}
+				interview={interview}
+				interviewers={interviewers}
+				bookInterview={bookInterview}
+				cancelInterview={cancelInterview}
+			/>
+		);
 	});
-
 
 	const setDay = (day) => setState({ ...state, day });
 

@@ -12,10 +12,10 @@ export default function Form(props) {
     setInterviewer(null);
   }
 
-  const cancel = () => {
-    reset();
-    props.onCancel();
-  }
+  // const cancel = () => {
+  //   reset();
+  //   props.onCancel();
+  // }
 
   const onSubmit = (event) => {event.preventDefault()};
   
@@ -27,7 +27,7 @@ export default function Form(props) {
 						className='appointment__create-input text--semi-bold'
 						name={props.student}
 						type='text'
-						placeholder='Enter Student Name'
+						placeholder={student || "Write your name here..."}
 						value={student}
             onChange={(event) => setStudent(event.target.value)}
 					/>

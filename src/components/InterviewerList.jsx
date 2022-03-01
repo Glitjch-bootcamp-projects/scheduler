@@ -6,6 +6,7 @@ import 'components/InterviewerList.scss';
 
 
 export default function InterviewerList (props) {
+  const { onLoad } = props;
   
   const interviewers = props.interviewers.map((interviewer) => {
     return (
@@ -13,8 +14,8 @@ export default function InterviewerList (props) {
         key={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        selected={interviewer.id === props.value}
-        setInterviewer={() => props.onChange(interviewer.id)}
+        selected={interviewer === props.value}
+        setInterviewer={() => props.onChange(interviewer)}
       />
     );
   });
@@ -28,14 +29,3 @@ export default function InterviewerList (props) {
     </section>
   );
 }
-
-// My attempt - works but looks different.
-// const { interviewers, interviewer, setInterviewer} = props;
-  // const arrInterviewers = interviewers.map(
-  //   intervi => 
-  //     <InterviewerListItem 
-  //       {...intervi} 
-  //       key={intervi.id}
-  //       setInterviewer={() => setInterviewer(intervi.id)}
-  //       selected={interviewer === intervi.id}
-  //     />);
