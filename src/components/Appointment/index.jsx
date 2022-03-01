@@ -11,7 +11,6 @@ import Confirm from "./Confirm";
 import Error from "./Error";
 
 import useVisualMode from "hooks/useVisualMode";
-import { delayStatus } from "helpers/selectors";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -78,8 +77,8 @@ export default function Appointment(props) {
         onCancel={() => back(EMPTY)} 
         onSave={save}
       />}
-      {mode === SAVING && <Status message={"Saving"} onComplete={() => delayStatus(transition, SHOW)}/>}
-      {mode === DELETING && <Status message={"Deleting"} onComplete={() => delayStatus(transition, EMPTY)}/>}
+      {mode === SAVING && <Status message={"Saving"} />}
+      {mode === DELETING && <Status message={"Deleting"} />}
       {mode === CONFIRM && 
         <Confirm message={"Are you fo'shizzle you want to d'lizzle?"} 
         onCancel={back}
