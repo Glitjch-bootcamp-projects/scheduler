@@ -37,7 +37,7 @@ export default function Application(props) {
 			...state.appointments,
 			[id]: appointment,
 		};
-		axios
+		return axios
 			.put(`/api/appointments/${id}`, {
 				interview,
 			})

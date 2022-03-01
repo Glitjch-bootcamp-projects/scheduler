@@ -12,7 +12,6 @@ export default function useVisualMode(initial) {
 			return;
 		}
 		newHistory.push(newMode);
-    // console.log("TJ SAVING", newMode);
 		setHistory(newHistory);
 	};
 
