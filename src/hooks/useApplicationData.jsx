@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
-	
-  // state management
   const [state, setState] = useState({
 		day: "Monday",
 		days: [],
@@ -11,15 +9,24 @@ export default function useApplicationData() {
 		interviewers: {},
 	});
 
-  // set the day
+  // console.log("TJ appt", state.appointments);
+
   const setDay = (day) => setState({ ...state, day });
+  
+  const spotUpdates = (dayValue, day, variable) =>{
+    let spot = day.spots;
+
+    if (dayValue === day.name && variable === "addSpots") {
+      return spot - 1;
+    }
+    if (dayValue === day.name && variable === "removeSpots") {
+      return spot + 1;
+    }
+    return spot;
+  };
+  
 
   const bookInterview = (id, interview) => {
-		console.log(
-			"TJ function bookInterview Application to Appointment",
-			id,
-			interview
-		);
 		const appointment = {
 			...state.appointments[id],
 			interview: { ...interview },
@@ -32,12 +39,22 @@ export default function useApplicationData() {
 			.put(`/api/appointments/${id}`, {
 				interview,
 			})
-			.then(
+			.then(() => {
+        const newDays = state.days.map((day)=>{
+          // console.log("TJ appt", appointment);
+          // console.log("TJ day", day);
+          return {
+            ...day,
+            spots: spotUpdates( state.day, day, "addSpots" )
+          }
+        })
 				setState({
 					...state,
 					appointments,
+          days: newDays
 				})
-			);
+
+      });
 	};
 
 
@@ -46,13 +63,25 @@ export default function useApplicationData() {
 			...state.appointments[id],
 			interview: null,
 		};
+    const appointments = {
+			...state.appointments,
+			[id]: appointment,
+		};
 		return axios
       .delete(`/api/appointments/${id}`)
       .then(() => {
-        setState({
-          ...state,
-          appointment
+        const newDays = state.days.map((day)=>{
+          return {
+            ...day,
+            spots: spotUpdates( state.day, day, "removeSpots")
+          }
         })
+				setState({
+					...state,
+					appointments,
+          days: newDays
+				})
+
 		});
 	};
 
