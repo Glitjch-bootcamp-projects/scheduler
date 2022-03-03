@@ -13,15 +13,22 @@ export default function useApplicationData() {
 
   const setDay = (day) => setState({ ...state, day });
   
-  const spotUpdates = (dayValue, day, variable) =>{
+  const spotUpdates = (dayValue, day, variable, appointment) =>{
     let spot = day.spots;
 
-    if (dayValue === day.name && variable === "addSpots") {
-      return spot - 1;
-    }
-    if (dayValue === day.name && variable === "removeSpots") {
+    if (dayValue.day === day.name && variable === "removeSpots") {
       return spot + 1;
     }
+    
+    // this one is tricky, returning unmodified spots count. By checking the PREVIOUS state of the interview, matched by the CURRENT appointment id, if the interview wasn't null then that implies user is editing an appointment. 
+    if (dayValue.day === day.name && state.appointments[appointment.id].interview !== null) {
+      return spot;
+    }
+
+    if (dayValue.day === day.name && variable === "addSpots") {
+      return spot - 1;
+    }
+  
     return spot;
   };
   
@@ -40,19 +47,31 @@ export default function useApplicationData() {
 				interview,
 			})
 			.then(() => {
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview },
+        };
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment,
+        };
+        console.log("TJ appointment from bookInterview", appointment.id);
+        console.log("TJ appointments from bookInterview", appointments);
+
         const newDays = state.days.map((day)=>{
           // console.log("TJ appt", appointment);
           // console.log("TJ day", day);
           return {
             ...day,
-            spots: spotUpdates( state.day, day, "addSpots" )
+            spots: spotUpdates( state, day, "addSpots", appointment)
           }
-        })
+        });
+
 				setState({
 					...state,
 					appointments,
           days: newDays
-				})
+				});
 
       });
 	};
@@ -73,7 +92,7 @@ export default function useApplicationData() {
         const newDays = state.days.map((day)=>{
           return {
             ...day,
-            spots: spotUpdates( state.day, day, "removeSpots")
+            spots: spotUpdates( state, day, "removeSpots", appointment)
           }
         })
 				setState({
