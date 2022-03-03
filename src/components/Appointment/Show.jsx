@@ -1,5 +1,6 @@
 import React from "react";
 
+// this componenet displays a saved appointment with the option to edit or delete
 export default function Show(props) {
   const { cancelInterview, onEdit } = props;
   return (

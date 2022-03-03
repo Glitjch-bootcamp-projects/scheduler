@@ -3,6 +3,7 @@ import classNames from "classnames";
 
 import "components/Button.scss";
 
+// this component is used for Save, Delete, Edit, Confirm, and Cancel
 export default function Button(props) {
   let buttonClass = classNames(
     "button",

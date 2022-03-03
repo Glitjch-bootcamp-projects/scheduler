@@ -1,5 +1,6 @@
 import React from "react";
 
+// this component is a buffering visual for deleting or saving actions
 export default function Status(props) {
   return (
     <main className="appointment__card appointment__card--status">

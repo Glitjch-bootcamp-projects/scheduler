@@ -5,9 +5,8 @@ import InterviewerListItem from "./InterviewerListItem";
 
 import 'components/InterviewerList.scss';
 
-
+// this component is displayed in the form with a row of selectable images of interviewers
 export default function InterviewerList (props) {
-  const { onLoad } = props;
   
   const interviewers = props.interviewers.map((interviewer) => {
     return (

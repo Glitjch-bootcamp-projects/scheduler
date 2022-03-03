@@ -1,5 +1,6 @@
 import React from "react";
 
+// this component is used to display failed attempts at either creating or deleting an appointment with the appropriate message
 export default function Error(props) {
   const { onClose, message } = props;
   return (

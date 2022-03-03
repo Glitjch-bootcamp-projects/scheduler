@@ -9,39 +9,27 @@ export default function useApplicationData() {
 		interviewers: {},
 	});
 
-  // console.log("TJ appt", state.appointments);
-
   const setDay = (day) => setState({ ...state, day });
   
   const spotUpdates = (dayValue, day, variable, appointment) =>{
     let spot = day.spots;
-
     if (dayValue.day === day.name && variable === "removeSpots") {
       return spot + 1;
     }
-    
-    // this one is tricky, returning unmodified spots count. By checking the PREVIOUS state of the interview, matched by the CURRENT appointment id, if the interview wasn't null then that implies user is editing an appointment. 
+    // just before setting new state, check the PREVIOUS state of the interview, matched by the CURRENT appointment id.
+    // if the interview wasn't null then that implies user is editing an existing appointment. 
     if (dayValue.day === day.name && state.appointments[appointment.id].interview !== null) {
       return spot;
     }
-
     if (dayValue.day === day.name && variable === "addSpots") {
       return spot - 1;
     }
-  
     return spot;
   };
   
-
+  // saves into server database and updates client state when an appointment is created or editted. Also updates spot count on the side bar 
   const bookInterview = (id, interview) => {
-		const appointment = {
-			...state.appointments[id],
-			interview: { ...interview },
-		};
-		const appointments = {
-			...state.appointments,
-			[id]: appointment,
-		};
+
 		return axios
 			.put(`/api/appointments/${id}`, {
 				interview,
@@ -55,15 +43,11 @@ export default function useApplicationData() {
           ...state.appointments,
           [id]: appointment,
         };
-        // console.log("TJ appointment from bookInterview", appointment.id);
-        // console.log("TJ appointments from bookInterview", appointments);
 
         const newDays = state.days.map((day)=>{
-          // console.log("TJ appt", appointment);
-          // console.log("TJ day", day);
           return {
             ...day,
-            spots: spotUpdates( state, day, "addSpots", appointment)
+            spots: spotUpdates(state, day, "addSpots", appointment)
           }
         });
 
@@ -76,7 +60,7 @@ export default function useApplicationData() {
       });
 	};
 
-
+  // removes appointment on both backend and front when user confirms a delete, also updating the day's available spots count
 	const cancelInterview = (id) => {
 		const appointment = {
 			...state.appointments[id],

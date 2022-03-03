@@ -1,8 +1,10 @@
 import { useState } from "react";
 
+// tracks the history of actions depending on which mode the user is on
 export default function useVisualMode(initial) {
 	const [history, setHistory] = useState([initial]);
 
+  // optionally removes the latest mode, but always adds a new mode
 	const transition = function (newMode, replace = false) {
 		const newHistory = [...history];
 		if (replace) {
@@ -15,6 +17,7 @@ export default function useVisualMode(initial) {
 		setHistory(newHistory);
 	};
 
+  // removes the latest mode, forcing user to previous mode
 	const back = function () {
 		if (history.length === 1) {
 			return;

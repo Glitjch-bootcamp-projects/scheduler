@@ -2,7 +2,7 @@ import React from "react";
 
 import Button from "components/Button";
 
-
+// This component is used as a precursor visual before use deletes an appointment
 export default function Confirm(props) {
   const { onCancel, onDelete } = props;
   return (
