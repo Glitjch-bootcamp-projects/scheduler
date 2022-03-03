@@ -46,7 +46,10 @@ npm test
 npm run storybook
 ```
 !["iPad Air viewport"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-ipad-air.png?raw=true)
+
 !["several modes when interacting with appointments"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-modes.png?raw=true)
+
 !["Saving an appointment status"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-saving.png?raw=true)
+
 !["iPhone 12 viewport"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-iphone-12.png?raw=true)
 !["Samsung Galaxy S8 viewport"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-samsung-galaxy-s8.png?raw=true)
