@@ -1,4 +1,28 @@
-# Interview Scheduler
+# Interview Scheduler PROJECT
+
+Tired of using your excel sheet to track your appointments? Good thing you work with Lighthouse Labs with this nifty scheduler.
+
+The Interview Scheduler is a single-page app with simple navigations for each workday. Selecting a work day would grant you a clean layout of booked and empty appointment slots with the ability to edit delete or create appointments. Start booking today!
+
+## Getting Started
+
+1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
+2. Clone your repository onto your local device.
+3. Install dependencies using the `npm install` command.
+3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
+4. Go to <http://localhost:8080/> in your browser.
+
+## Dependencies
+
+- axios": "^0.26.0"
+- cypress": "^9.5.1"
+- classnames": "^2.2.6"
+- normalize.css": "^8.0.1"
+- react": "^16.9.0"
+- react-dom": "^16.9.0"
+- react-scripts": "3.0.0"
+
+Enjoy!
 
 ## Setup
 
