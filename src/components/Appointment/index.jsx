@@ -50,7 +50,7 @@ export default function Appointment(props) {
 
 
   const deleteAppointment = (id) => {
-    console.log("TJ deleteappointment");
+    // console.log("TJ deleteappointment");
     // added an additional transition(DELETING BELOW because the actual deleting in db takes a while until it loads the "deleting" form)
     transition(DELETING)
     cancelInterview(id)

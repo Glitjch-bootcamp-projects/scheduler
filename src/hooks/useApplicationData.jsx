@@ -55,8 +55,8 @@ export default function useApplicationData() {
           ...state.appointments,
           [id]: appointment,
         };
-        console.log("TJ appointment from bookInterview", appointment.id);
-        console.log("TJ appointments from bookInterview", appointments);
+        // console.log("TJ appointment from bookInterview", appointment.id);
+        // console.log("TJ appointments from bookInterview", appointments);
 
         const newDays = state.days.map((day)=>{
           // console.log("TJ appt", appointment);

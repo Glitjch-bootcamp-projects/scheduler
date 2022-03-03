@@ -32,14 +32,14 @@ describe("Form", () => {
   });
 
   it("validates that the student name is not blank", () => {
-    const onSave = jest.fn();
+    const onSave = jest.fn(()=>{});
     const { getByText } = render(
       <Form interviewers={interviewers} onSave={onSave} />
     );
 
     fireEvent.click(getByText("Save"));
 
-    expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
+    expect(getByText(/cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
 
@@ -51,7 +51,7 @@ describe("Form", () => {
 
     fireEvent.click(getByText("Save"));
 
-    expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
+    expect(getByText(/cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
 
     fireEvent.change(getByPlaceholderText("Enter Student Name"), {
@@ -60,7 +60,7 @@ describe("Form", () => {
 
     fireEvent.click(getByText("Save"));
 
-    expect(queryByText(/student name cannot be blank/i)).toBeNull();
+    expect(queryByText(/cannot be blank/i)).toBeInTheDocument();
 
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
