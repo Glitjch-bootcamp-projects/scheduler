@@ -54,11 +54,12 @@ npm test
 ```sh
 npm run storybook
 ```
-!["iPad Air viewport"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-ipad-air.png?raw=true)
-
 !["several modes when interacting with appointments"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-modes.png?raw=true)
 
-!["Saving an appointment status"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-saving.png?raw=true)
+!["schedule days"](https://github.com/glitjch/scheduler/blob/master/docs/interview-scheduler-days.gif?raw=true)
 
-!["iPhone 12 viewport"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-iphone-12.png?raw=true)
-!["Samsung Galaxy S8 viewport"](https://github.com/glitjch/scheduler/blob/master/docs/scheduler-screenshot-samsung-galaxy-s8.png?raw=true)
+!["schedule creating"](https://github.com/glitjch/scheduler/blob/master/docs/interview-scheduler-creating.gif?raw=true)
+
+!["schedule editing"](https://github.com/glitjch/scheduler/blob/master/docs/interview-scheduler-editting.gif?raw=true)
+
+!["schedule delting"](https://github.com/glitjch/scheduler/blob/master/docs/interview-scheduler-deleting.gif?raw=true)
