@@ -10,7 +10,16 @@ The Interview Scheduler is a single-page app with simple navigations for each wo
 2. Clone your repository onto your local device.
 3. Install dependencies using the `npm install` command.
 3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
-4. Go to <http://localhost:8080/> in your browser.
+4. Go to <http://localhost:8000/> in your browser.
+
+## Backend Setup
+
+1. Install the separate scheduler-api for mock data by going to <https://github.com/lighthouse-labs/scheduler-api>.
+2. Follow its README.md, `npm install`.
+3. Start the database server using `npm start`.
+4. Go to <http://localhost:8001/> in your browser.
+5. If you need to reset the database to its randomly generated default, visit <http://localhost:8001/api/debug/reset>.
+
 
 ## Dependencies
 
