@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import "components/InterviewerListItem.scss";
 
-// this component generates the individual interviewer display of a row of interviewers, when an appointment form is shown
+// renders individual interviewer and name when selected
 export default function InterviewerListItem(props) {
   const { name, avatar, selected, setInterviewer } = props;
   

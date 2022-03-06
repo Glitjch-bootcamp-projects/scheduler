@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function useVisualMode(initial) {
 	const [history, setHistory] = useState([initial]);
 
-  // optionally removes the latest mode, but always adds a new mode
+  // removes the latest mode, conditionally, but always adds a new mode
 	const transition = function (newMode, replace = false) {
 		const newHistory = [...history];
 		if (replace) {

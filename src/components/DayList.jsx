@@ -1,7 +1,7 @@
 import React from "react";
 import DayListItem from "./DayListItem";
 
-// this component represents the five weekdays displayed on the side bar
+// renders side bar with the five weekdays
 export default function DayList (props) {
   const dayOfTheWeek = (props.days).map(
       day => 

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import 'components/DayListItem.scss';
 
-// this component represents each day of the five days on the side bar which changes colors and spot count from interactions with its appointments.
+// renders each day with dynamic styling
 export default function DayListItem(props) {
   const { name, spots, setDay, selected } = props;
   const dayClass = classNames(

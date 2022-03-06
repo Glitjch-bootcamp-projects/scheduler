@@ -22,18 +22,18 @@ const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
-// this component is a main component, for handling mode changes 
+// main component for handling mode changes 
 export default function Appointment(props) {
   const { bookInterview, id, interview, cancelInterview } = props;
 
 
-  // when there is an interview, use the hook to transition empty to show.
+  // modify form based on interview status
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
   
 
-  // creates the object of the interview. Pass into Form component with the arguments
+  // creates the object of the interview
   const save = (name, interviewer) => {
     transition(SAVING);
     const interview = {
@@ -44,21 +44,18 @@ export default function Appointment(props) {
       .then(() => {transition(SAVING)})
       .then(() => {transition(SHOW)})
       .catch((error)=> {
-        console.log("save error", error);
-        transition(ERROR_SAVE, true);
+        transition(ERROR_SAVE);
       })
   };
 
 
   const deleteAppointment = (id) => {
-    // console.log("TJ deleteappointment");
-    // added an additional transition(DELETING BELOW because the actual deleting in db takes a while until it loads the "deleting" form)
+    // additional transition(DELETING) for render flow
     transition(DELETING)
     cancelInterview(id)
       .then(() => {transition(DELETING)})
       .then(() => {transition(EMPTY)})
       .catch((error) => {
-        console.log("delete error", error);
         transition(ERROR_DELETE, true);
       })
   }

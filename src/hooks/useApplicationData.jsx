@@ -16,8 +16,7 @@ export default function useApplicationData() {
     if (dayValue.day === day.name && variable === "removeSpots") {
       return spot + 1;
     }
-    // just before setting new state, check the PREVIOUS state of the interview, matched by the CURRENT appointment id.
-    // if the interview wasn't null then that implies user is editing an existing appointment. 
+    // checks PREVIOUS state for an interview, matched by the CURRENT appointment id.
     if (dayValue.day === day.name && state.appointments[appointment.id].interview !== null) {
       return spot;
     }
@@ -27,7 +26,7 @@ export default function useApplicationData() {
     return spot;
   };
   
-  // saves into server database and updates client state when an appointment is created or editted. Also updates spot count on the side bar 
+  // saves into server database, updates client state, and spot count.
   const bookInterview = (id, interview) => {
 
 		return axios
@@ -60,7 +59,7 @@ export default function useApplicationData() {
       });
 	};
 
-  // removes appointment on both backend and front when user confirms a delete, also updating the day's available spots count
+  // removes appointment on backend and client; also updating spots count
 	const cancelInterview = (id) => {
 		const appointment = {
 			...state.appointments[id],

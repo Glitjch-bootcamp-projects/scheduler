@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
-// this component is the intake form rendered after user clicks on an empty appointment, providing option to fill and save one.
-// It also doubles up as an edit form where user can modify an already-made appointment.
+// renders intake form from empty or edit appointment
 export default function Form(props) {
 	const [name, setName] = useState(props.name || "");
 	const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -21,7 +20,7 @@ export default function Form(props) {
   }
 
 
-  // this validate function prevents incomplete form submissions while updating the database and painting otherwise
+  // prevents incomplete form submissions
   function validate() {
     if (name === "" && interviewer === null) {
       setError("Student name AND interviewer cannot be blank");
