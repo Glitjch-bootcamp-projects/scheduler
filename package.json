@@ -2,7 +2,7 @@
   "name": "scheduler",
   "version": "0.1.0",
   "engines": {
-    "node": "16x"
+    "node": "16.x"
   },
   "private": true,
   "proxy": "http://localhost:8001",
